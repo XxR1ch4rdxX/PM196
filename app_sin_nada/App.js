@@ -1,15 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+//Zona de importaciones
+import { StatusBar } from 'expo-status-bar';    
+import { StyleSheet, Text, View, Button } from 'react-native';
+
+//Funcion main que ejecutara la vista principal de la aplicacion
+
+ const Texto=() => {
+     return (<Text>Hola Mundo asqueroso</Text>) 
+    }
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+
+      {/* Si queremos hacer algo visible debe estar dentro de view, como si fuera el body 
+      Todo lo que queramos mostrar debe ir dentro de view y cada elemento tiene sus
+      etiquetas
+      */}
+      
       <StatusBar style="auto" />
+      <Texto></Texto>
+      <Texto></Texto>
+      <Texto></Texto>
+      <Texto></Texto>
+      <Texto></Texto>
+      <Button title="Boton Tonto" />
     </View>
   );
 }
-
+// Zona de estilos
+// Estilos para la vista principal de la aplicacion
 const styles = StyleSheet.create({
   container: {
     flex: 1,
