@@ -4,8 +4,9 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 //Funcion main que ejecutara la vista principal de la aplicacion
 
- const Texto=() => {
-     return (<Text>Hola Mundo asqueroso</Text>) 
+ const Texto=(props) => {
+  const {contenido} = props;
+     return (<Text> {contenido} </Text>) 
     }
 
 export default function App() {
@@ -18,11 +19,11 @@ export default function App() {
       */}
       
       <StatusBar style="auto" />
-      <Texto></Texto>
-      <Texto></Texto>
-      <Texto></Texto>
-      <Texto></Texto>
-      <Texto></Texto>
+      <Texto contenido="Hola"></Texto>
+      <Texto contenido="que"></Texto>
+      <Texto contenido="tal"></Texto>
+      <Texto contenido=":D"></Texto>
+      <Texto contenido="."></Texto>
       <Button title="Boton Tonto" />
     </View>
   );
