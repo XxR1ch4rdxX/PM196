@@ -10,16 +10,16 @@ import React,{useState} from 'react';
   const actualizarText=()=>{setContenido('Adios');}
      return (<Text onPress={actualizarText}> {contenido} </Text>) 
     }
-    
 
-  
-  
+ const Boton=(props) => {
+  const [tituloBoton, setTituloBoton] = useState('Boton Tonto');
+  const Presionar = () => {setTituloBoton('Presionado');};
+  return (<Button onPress={Presionar} title={tituloBoton}/>)
+ }
 
 export default function App() {
 
-  const [tituloBoton, setTituloBoton] = useState('Boton Tonto');
-  const Presionar = () => {setTituloBoton('Presionado');
-  };
+  
 
   return (
     <View style={styles.container}>
@@ -35,7 +35,7 @@ export default function App() {
       <Texto></Texto>
       <Texto></Texto>
       <Texto></Texto>
-      <Button onPress={Presionar} title={tituloBoton}/>
+      <Boton/>
     </View>
   );
 }
