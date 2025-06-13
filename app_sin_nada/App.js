@@ -1,28 +1,41 @@
 //Zona de importaciones
 import { StatusBar } from 'expo-status-bar';    
 import { StyleSheet, Text, View, Button } from 'react-native';
+import React,{useState} from 'react';
 
 //Funcion main que ejecutara la vista principal de la aplicacion
-
+//Solo se heredan las propiedades no los estados
  const Texto=(props) => {
-  const {children} = props;
-     return (<Text> {children} </Text>) 
+  const [contenido,setContenido] = useState('Hola');
+  const actualizarText=()=>{setContenido('Adios');}
+     return (<Text onPress={actualizarText}> {contenido} </Text>) 
     }
+    
+
+  
+  
 
 export default function App() {
+
+  const [tituloBoton, setTituloBoton] = useState('Boton Tonto');
+  const Presionar = () => {setTituloBoton('Presionado');
+  };
+
   return (
     <View style={styles.container}>
 
+      
+  
       {/* Si queremos hacer algo visible debe estar dentro de view, como si fuera el body 
       Todo lo que queramos mostrar debe ir dentro de view y cada elemento tiene sus
       etiquetas
       */}
       
       <StatusBar style="auto" />
-      <Texto>wenas45"".;l</Texto>
-      <Texto> </Texto>
-      <Texto>helow</Texto>
-      <Button title="Boton Tonto" />
+      <Texto></Texto>
+      <Texto></Texto>
+      <Texto></Texto>
+      <Button onPress={Presionar} title={tituloBoton}/>
     </View>
   );
 }
