@@ -5,10 +5,14 @@ import React,{useState} from 'react';
 
 //Funcion main que ejecutara la vista principal de la aplicacion
 //Solo se heredan las propiedades no los estados
- const Texto=(props) => {
+//aca cambiamos el parametro de promp a style para los estilos
+ const Texto=({style}) => {
   const [contenido,setContenido] = useState('Hola');
   const actualizarText=()=>{setContenido('Adios');}
-     return (<Text onPress={actualizarText}> {contenido} </Text>) 
+  //ahora el hijo de texto recibe el estilo
+  // y lo aplica al texto y no depende del padre
+  //si no le pasamos el estilo, se aplica el estilo por defecto
+     return (<Text  style={[styles.text,style]} onPress={actualizarText}> {contenido} </Text>) 
     }
 
  const Boton=(props) => {
@@ -32,9 +36,14 @@ export default function App() {
       */}
       
       <StatusBar style="auto" />
-      <Texto></Texto>
-      <Texto></Texto>
-      <Texto></Texto>
+      {/* Este estilo no va a funcionar ya que debe estar
+      declarado el estulilo en el padre, es decir en el componente "Text" */}
+      <Texto style={styles.text}> </Texto>
+
+      {/* Este estilo si va a funcionar ya que el componente "Texto" */}
+      <Texto style={styles.blue} ></Texto>
+      <Texto style={styles.red}></Texto>
+      <Texto style={styles.green}></Texto>
       <Boton/>
     </View>
   );
@@ -45,7 +54,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'stretch', //para alinear los elementos al centro
+    flexDirection: 'colum', //disposicion de los elementos
+    //justify sirve para alinear los elementos
     justifyContent: 'center',
+    justifyContent: 'space-around' , //para alinear los elementos 
   },
+
+  //aca creamos la clase texto
+  //para darle estilos a los textos
+  text:{
+    //para el color del texto
+    color: 'purple',
+    //para el tamaño del texto
+    fontSize: 28,
+  },
+  //aca creamos estilos para textos de colores individuales
+  //disposicion flex
+  
+  blue:{backgroundColor: 'blue',  },
+  red:{backgroundColor: 'red',},
+  green:{backgroundColor: 'green',},
+
 });
