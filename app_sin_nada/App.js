@@ -1,46 +1,55 @@
 //Zona de importaciones
-import { StatusBar } from 'expo-status-bar';    
-import { StyleSheet, Text, View, Switch} from 'react-native';
-import React,{useState} from 'react';
+import React, {useState} from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View , Button, ActivityIndicator } from 'react-native';
 
-const App =() =>{
+
+export default function App() {
+  const [cargando, setCargando] = useState(false);
+  const [datos, setDatos] = useState('');
+    
+  const SimularCarga  =() =>{
+    setCargando(true);
+    setDatos('');
+
+    setTimeout(()=>{
+      setCargando(false);
+      setDatos('Datos cargados correctamente');
+    }, 8000);
+  }
   
-    const [activo, setActivo]= useState(false);
-    const cambiarEstado = () => {
-      setActivo(previousState => !previousState);}
-    return (
-      <View style={styles.container}>
-        <Text style={styles.label}>Activar Switch</Text>
-        <Switch
-          onValueChange={cambiarEstado}
-          value={activo}/>
-        <Text style={styles.statusText}>
-          Estado Actual: {activo ? 'Activo' : 'Inactivo'}
-        </Text>
-      </View>
-    );
+  return(
+    <View style={styles.container}>
+      <Text style={styles.titulo}>Activity Indicator :D</Text>
+      <Button title="Cargar Datos" onPress={SimularCarga} color='#007AFF'/>
+
+      {cargando && (
+        <ActivityIndicator size='large' color='#007AFF' style={styles.loader} />
+      )}
+
+    
+    {datos !== '' && <Text>{datos}</Text>}
+
+    <StatusBar style="auto"/>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5F5F5',
+  container:{
+    flex:1,
+    backgroundColor:'#F5F5F5',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent:'center',
     padding: 20,
   },
-  label: {
-    fontSize: 18,
-    marginBottom: 10,
+  titulo:{
+    fontSize: 24,
     fontWeight: 'bold',
-    color: '#333',
+    marginBottom: 20,
   },
-  statusText: {
-    marginTop: 20,
-    fontSize: 16,
-    marginTop: 20,
-    color: '#555',
-  },
+  loader:{
+    marginVertical:20,
+  }
 });
 
-export default App;
