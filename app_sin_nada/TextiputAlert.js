@@ -99,7 +99,7 @@ const styles =StyleSheet.create({
         padding: 20,
     },
     formulario: {
-        backgroundColor: '#fff',
+        backgroundColor: "rgb",
         padding: 20,
         borderRadius: 10,
     },
