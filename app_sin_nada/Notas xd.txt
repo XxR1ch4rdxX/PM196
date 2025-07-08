@@ -1,0 +1,77 @@
+<Expo comandos locos>---------------------------------------------------------------------------------------
+
+npx create-expo-app --template (para un nuevo proyecto a partir de una plantilla de react)
+npx create-expo-app <NOMBRE_APLICACION> para un nuevo proyecto son nombre xd sin plantilla
+
+cd nombre-app
+npx expo start  //para lanzar la app
+npx expo install <paquete>	Instala una librería compatible con Expo (mejor que npm install)	npx expo install expo-image-picker
+npx expo install react-native-screens react-native-safe-area-context
+npx expo build:android	Genera APK para Android (Expo Classic)	 ---obsoleto----
+npx expo export	Exporta la app como sitio web estático (para PWA)	npx expo export:web
+npx expo run:android	Corre la app en emulador o dispositivo Android (requiere EAS o Expo bare workflow)	
+npx expo run:ios	Corre en emulador iOS (solo en Mac con Xcode)	
+npx eas build:configure	Inicializa el proyecto con EAS Build	npx eas build:configure
+npx eas build --platform android	Compila APK/AAB en la nube	✅
+npx eas submit -p android	Sube el archivo generado a Google Play (requiere setup)	✅
+npx expo doctor	Revisa si hay errores en tu entorno de Expo	✅
+npx expo upgrade	Actualiza tu proyecto a la última versión compatible de Expo	✅
+npx expo login	Inicia sesión con tu cuenta Expo	✅
+npx expo whoami	Verifica con qué cuenta estás logueado	✅
+npx expo publish	Publica tu app en los servidores de Expo (modo OTA updates)
+npx expo start --web	Inicia tu app en modo navegador (PWA)	✅
+npx expo export:web	Exporta tu app como sitio web estático
+npx expo install expo-font	Para usar fuentes personalizadas	✅
+npx expo install expo-file-system	Acceder a archivos en el dispositivo	✅
+npx expo install expo-location	Acceder a la ubicación del usuario	✅
+
+
+
+
+<componentes>---------------------------------------------------------------------------------------------------------
+Nº	Componente	Función Principal	Ejemplo de Uso
+1	View	Contenedor general (como div)	<View style={{padding: 10}}><Text>Hola</Text></View>
+2	Text	Mostrar texto	<Text style={{fontSize: 18}}>Hola Mundo</Text>
+3	Image	Mostrar imágenes	<Image source={{uri: 'https://picsum.photos/200'}} style={{width:200, height:200}} />
+4	TextInput	Entrada de texto	<TextInput value={texto} onChangeText={setTexto} />
+5	Button	Botón simple con acción	<Button title="Click" onPress={() => alert('Presionado')} />
+6	ScrollView	Contenedor desplazable	<ScrollView><Text>Item</Text>...</ScrollView>
+7	Switch	Interruptor booleano	<Switch value={activo} onValueChange={setActivo} />
+8	SafeAreaView	Asegura contenido en zonas seguras del dispositivo	<SafeAreaView><Text>Seguro</Text></SafeAreaView>
+9	ActivityIndicator	Indicador de carga (spinner)	<ActivityIndicator size="large" color="#00f" />
+10	StatusBar	Control de la barra de estado del sistema	<StatusBar barStyle="dark-content" backgroundColor="#eee" />
+11	Pressable	Detecta interacciones táctiles con flexibilidad	<Pressable onPress={() => alert('Presionado')}><Text>Presiona</Text></Pressable>
+12	TouchableOpacity	Botón táctil con efecto de opacidad	<TouchableOpacity onPress={() => {}}><Text>Tap</Text></TouchableOpacity>
+13	TouchableHighlight	Igual que TouchableOpacity, pero con fondo destacado	<TouchableHighlight onPress={() => {}}><Text>Tap</Text></TouchableHighlight>
+14	TouchableWithoutFeedback	Captura toque sin feedback visual	<TouchableWithoutFeedback onPress={Keyboard.dismiss}><View>...</View></TouchableWithoutFeedback>
+15	Modal	Ventana emergente tipo popup	<Modal visible={true}><Text>Hola Modal</Text></Modal>
+16	FlatList	Lista optimizada para datos largos	<FlatList data={data} renderItem={({item}) => <Text>{item}</Text>} />
+17	SectionList	Lista con secciones (categorías)	<SectionList sections={[{title:'A', data:['A1','A2']}]}/>
+18	VirtualizedList	Base para FlatList, control total de listas grandes	(No se recomienda si no sabes lo que haces)
+19	ImageBackground	Contenedor con imagen de fondo	<ImageBackground source={{uri:'...'}} style={{width:100, height:100}}><Text>Encima</Text></ImageBackground>
+20	RefreshControl	Permite hacer "pull to refresh" en listas o scrolls	<ScrollView refreshControl={<RefreshControl refreshing={r} onRefresh={refresh} />} />
+
+
+
+
+
+<API>--------------------------------------------------------------------------------------------------------------------------------
+
+como usar una api:
+crear una funcion asincrona con fetch y async
+para permitir usar awayt (esperar algo)
+este awayt estara con la url de nuestra api y asi recibira los datos, estos datos
+aun no son Json, para transformarlos debemos usar Json y ahora si tendremos una cadena que podremos usar
+como queramos.
+
+
+
+asi se ve una funcion api:
+const fetchData = async () => {   //funcion asincronica
+  setLoading(true); //un pequeno alert o algo para saber que esta cargando y esperamos datos
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts');// una variable que espera la respuesta de la api
+  const json = await res.json(); //la respuesta obtenida pasada a formato json
+  setData(json.slice(0, 10)); // solo los primeros 10
+  setLoading(false);    // se cancela el atributo de loading para decir que ya acabo de cargar.
+};
+
