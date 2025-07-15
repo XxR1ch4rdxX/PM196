@@ -22,6 +22,7 @@ export default function App() {
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
+
     </NavigationContainer>
   );
 }
