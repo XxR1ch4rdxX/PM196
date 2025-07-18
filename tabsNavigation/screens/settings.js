@@ -1,5 +1,5 @@
 import { View,Text,StyleSheet } from "react-native";
-import Ionicons from '@expo/vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default function Profile() {
     return(

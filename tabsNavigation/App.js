@@ -2,14 +2,29 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';import {Ionicons} from '@expo/vector-icons';
+import 'react-native-gesture-handler';
 
-import {Ionicons} from '@expo/vector-icons';
 
 import Home from './screens/home';
 import Settings from './screens/settings';
 import Profile from './screens/profile';
+import User_Details from './screens/user_details';
 
 const Tab = createBottomTabNavigator();
+
+const Stack = createNativeStackNavigator();
+
+const Profiledetails=()=>(
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="User_Details" component={User_Details} />
+      </Stack.Navigator>
+);
+
+
+
+
 
 export default function App() {
   return (
@@ -39,16 +54,19 @@ export default function App() {
       >
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Settings" component={Settings} />
-        <Tab.Screen name="Profile" component={Profile} />
+        <Tab.Screen name="Profile" component={Profiledetails} />
       </Tab.Navigator>
+     
     </NavigationContainer>
+
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffff',
     alignItems: 'center',
     justifyContent: 'center',
   },
